@@ -89,8 +89,17 @@ namespace Facebook.Unity.Editor
 
                 if (!ManifestMod.CheckManifest())
                 {
-                    // If something is wrong with the Android Manifest, try to regenerate it to fix it for the next build.
-                    ManifestMod.GenerateManifest();
+                    //
+                    // BEGIN HSH MOD
+                    //
+                    if (FacebookSettings.AndroidManifestFixOnBuild)
+                    {
+                        // If something is wrong with the Android Manifest, try to regenerate it to fix it for the next build.
+                        ManifestMod.GenerateManifest();
+                    }
+                    //
+                    // END HSH MOD
+                    //
                 }
             }
         }

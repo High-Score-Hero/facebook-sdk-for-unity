@@ -59,6 +59,13 @@ namespace Facebook.Unity.Editor
         private GUIContent frictionlessLabel = new GUIContent("Frictionless Requests [?]", "Use frictionless app requests, as described in their own documentation.");
 
         private GUIContent androidKeystorePathLabel = new GUIContent("Android Keystore Path [?]", "Set this field if you have a customized android keystore path");
+        //
+        // BEGIN HSH MOD
+        //
+        private GUIContent androidManifestFixLabel = new GUIContent("Fix Manifest on Build [?]", "If 'true', attempts fix manifest issues at player build time.");
+        //
+        // END HSH MOD
+        //
         private GUIContent packageNameLabel = new GUIContent("Package Name [?]", "aka: the bundle identifier");
         private GUIContent classNameLabel = new GUIContent("Class Name [?]", "aka: the activity name");
         private GUIContent debugAndroidKeyLabel = new GUIContent("Debug Android Key Hash [?]", "Copy this key to the Facebook Settings in order to test a Facebook Android app");
@@ -313,6 +320,13 @@ namespace Facebook.Unity.Editor
                 this.SelectableLabelField(this.packageNameLabel, Utility.GetApplicationIdentifier());
                 this.SelectableLabelField(this.classNameLabel, ManifestMod.DeepLinkingActivityName);
                 this.SelectableLabelField(this.debugAndroidKeyLabel, FacebookAndroidUtil.DebugKeyHash);
+                //
+                // BEGIN HSH MOD
+                //
+                FacebookSettings.AndroidManifestFixOnBuild = EditorGUILayout.Toggle(this.androidManifestFixLabel, FacebookSettings.AndroidManifestFixOnBuild);
+                //
+                // END HSH MOD
+                //
                 if (GUILayout.Button("Regenerate Android Manifest"))
                 {
                     ManifestMod.GenerateManifest();

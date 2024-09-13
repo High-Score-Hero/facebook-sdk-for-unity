@@ -77,6 +77,14 @@ namespace Facebook.Unity.Settings
         private bool frictionlessRequests = true;
         [SerializeField]
         private string androidKeystorePath = string.Empty;
+        //
+        // BEGIN HSH MOD
+        //
+        [SerializeField]
+        private bool androidManifestFixOnBuild = true;
+        //
+        // END HSH MOD
+        //
         [SerializeField]
         private string iosURLSuffix = string.Empty;
         [SerializeField]
@@ -336,6 +344,34 @@ namespace Facebook.Unity.Settings
                 }
             }
         }
+        
+        //
+        // BEGIN HSH MOD
+        //
+        /// <summary>
+        /// Gets or sets the a value indicating whether this <see cref="Facebook.Unity.FacebookSettings"/> has android manifest fix on build enabled.
+        /// </summary>
+        /// <value><c>true</c> if androidManifestFixOnBuild; otherwise, <c>false</c>.</value>
+        public static bool AndroidManifestFixOnBuild
+        {
+            get
+            {
+                return Instance.androidManifestFixOnBuild;
+            }
+
+            set
+            {
+                if (Instance.androidManifestFixOnBuild != value)
+                {
+                    Instance.androidManifestFixOnBuild = value;
+                    SettingsChanged();
+                }
+            }
+        }
+        
+        //
+        // END HSH MOD
+        //
 
         /// <summary>
         /// Gets or sets the ios URL suffix.
