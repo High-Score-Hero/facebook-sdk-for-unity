@@ -19,7 +19,7 @@
 
 # shellcheck disable=SC2039
 
-. $(dirname $0)/common.sh
+. "$(dirname "$0")/common.sh"
 
 source "$PROJECT_ROOT/scripts/build.properties"
 
