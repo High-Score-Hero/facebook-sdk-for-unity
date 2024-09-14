@@ -84,23 +84,29 @@ namespace Facebook.Unity.Editor
 
                 if (!FacebookAndroidUtil.SetupProperly)
                 {
-                    Debug.LogError("Your Android setup is not correct. See Settings in Facebook menu.");
-                }
-
-                if (!ManifestMod.CheckManifest())
-                {
                     //
                     // BEGIN HSH MOD
                     //
-                    if (FacebookSettings.AndroidManifestFixOnBuild)
-                    {
-                        // If something is wrong with the Android Manifest, try to regenerate it to fix it for the next build.
-                        ManifestMod.GenerateManifest();
-                    }
+                    Debug.LogWarning("Your Android setup is not correct. See Settings in Facebook menu.");
                     //
                     // END HSH MOD
                     //
                 }
+
+                //
+                // BEGIN HSH MOD
+                //
+                if (FacebookSettings.AndroidManifestFixOnBuild)
+                {
+                    if (!ManifestMod.CheckManifest())
+                    {
+                        // If something is wrong with the Android Manifest, try to regenerate it to fix it for the next build.
+                        ManifestMod.GenerateManifest();
+                    }
+                }
+                //
+                // END HSH MOD
+                //
             }
         }
 
